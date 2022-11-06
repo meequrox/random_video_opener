@@ -4,9 +4,9 @@
 
 __A simple program that opens a random video in the current directory__
 
-[List of supported formats](src/files.cpp#L28)
+[List of supported formats](src/files.cpp#L31)
 
-_Currently only *nix OS are supported_
+_GNU/Linux and Windows are currently known to be supported_
 
 ## Build
 
@@ -17,9 +17,9 @@ The program outputs:
 - number of files in the directory
 - selected file number and name
 
-```
-mkdir build
+GNU/Linux:
 
+```
 cd build
 
 cmake .. -DCMAKE_BUILD_TYPE="Release"
@@ -27,7 +27,17 @@ cmake .. -DCMAKE_BUILD_TYPE="Release"
 make
 ```
 
-The output binary will be named `RandomVideoOpener`
+Windows (with [MinGW](http://www.equation.com/servlet/equation.cmd?fa=fortran) and [CMake](https://cmake.org/download/#latest) installed):
+
+```
+cd build
+
+cmake .. -DCMAKE_BUILD_TYPE="Release" -D"CMAKE_CXX_COMPILER=g++" -G "MinGW Makefiles" -D"CMAKE_MAKE_PROGRAM=make"
+
+make
+```
+
+__The output binary will be named `RandomVideoOpener` or `RandomVideoOpener.exe`__
 
 ### Debug
 
@@ -35,9 +45,9 @@ The program outputs the same information as [Release](#release) and:
 - check result for each file (VIDEO/NOT VIDEO)
 - list of all files in the directory
 
-```
-mkdir build
+GNU/Linux:
 
+```
 cd build
 
 cmake .. -DCMAKE_BUILD_TYPE="Debug"
@@ -45,4 +55,12 @@ cmake .. -DCMAKE_BUILD_TYPE="Debug"
 make
 ```
 
-The output binary will be named `RandomVideoOpener`
+Windows (with [MinGW](http://www.equation.com/servlet/equation.cmd?fa=fortran) and [CMake](https://cmake.org/download/#latest) installed):
+
+```
+cd build
+
+cmake .. -DCMAKE_BUILD_TYPE="Debug" -D"CMAKE_CXX_COMPILER=g++" -G "MinGW Makefiles" -D"CMAKE_MAKE_PROGRAM=make"
+
+make
+```
