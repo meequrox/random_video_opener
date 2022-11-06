@@ -10,12 +10,35 @@
 
 namespace fs = std::filesystem;
 
+bool is_compatible_format(std::vector<std::string> exts, fs::path path) {
+    for (const auto &e : exts) {
+        if (path.extension().generic_string() == e) {
+#ifdef _PDEBUG_
+            std::cout << Color::Green << "VIDEO: " << Color::Standard <<
+                         path.filename().generic_string() << std::endl;
+#endif
+            return true;
+        }
+    }
+
+#ifdef _PDEBUG_
+            std::cout << Color::Red << "NOT VIDEO: " << Color::Standard <<
+                         path.filename().generic_string() << std::endl;
+#endif
+
+    return false;
+}
+
 std::vector<fs::path> get_files_in_dir(fs::path wd) {
+    std::vector<std::string> video_exts({".webm", ".mkv", ".flv", ".avi",
+                                         ".mts", ".m2ts", ".ts", ".mov",
+                                         ".wmv", ".mp4", ".m4v", ".3gp"});
+
     std::vector<fs::path> files;
 
     for (const auto &entry : fs::directory_iterator(wd)) {
         // TODO: Format check
-        if (entry.is_regular_file())
+        if (entry.is_regular_file() && is_compatible_format(video_exts, entry))
             files.push_back(entry);
     }
 
@@ -31,6 +54,10 @@ void print_info(fs::path wd, std::vector<fs::path> files, unsigned int index) {
     4 files, choosing number 1:
     1.mp3
     */
+
+#ifdef _PDEBUG_
+    std::cout << std::endl;
+#endif
 
     std::cout << Color::Cyan << wd.generic_string() << Color::Standard <<
                  std::endl << std::endl;
@@ -53,7 +80,6 @@ void open_file_at_index(fs::path wd, std::vector<fs::path> files, unsigned int i
     std::string cmd = "xdg-open \"" + filename + "\" &";
     system(cmd.c_str());
 }
-
 
 int main() {
     std::vector<fs::path> files = get_files_in_dir(fs::current_path());
