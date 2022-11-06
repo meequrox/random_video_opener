@@ -1,4 +1,4 @@
-//#include <iostream>
+#include "Colors/colors.hpp"
 
 #include <vector>
 #include <filesystem>
@@ -34,5 +34,10 @@ int main() {
         std::cout << files.at(i).generic_string() << std::endl;
 #endif
 
-	return 0;
+    if (!files.size()) {
+        std::cout << Color::Red << "No files found, exiting..." << Color::Reset << std::endl;
+        return EXIT_SUCCESS;
+    }
+
+    return EXIT_SUCCESS;
 }
