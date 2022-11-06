@@ -45,6 +45,12 @@ void print_info(fs::path wd, std::vector<fs::path> files, unsigned int index) {
 #endif
 }
 
+void open_file_at_index(fs::path wd, std::vector<fs::path> files, unsigned int index) {
+    std::string filename = files.at(index).filename().generic_string();
+    std::string cmd = "xdg-open \"" + filename + "\" &";
+    system(cmd.c_str());
+}
+
 
 int main() {
     std::vector<fs::path> files = get_paths(fs::current_path());
@@ -56,8 +62,11 @@ int main() {
 
     int rand = URNG(0, files.size());
 
-    // Change 0 to random index
     print_info(fs::current_path(), files, rand);
+
+    open_file_at_index(fs::current_path(), files, rand);
+
+    std::cout << "You can now close this window" << std::endl;
 
     return EXIT_SUCCESS;
 }
