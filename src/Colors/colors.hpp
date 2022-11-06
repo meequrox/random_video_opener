@@ -3,6 +3,10 @@
 
 #include <ostream>
 
+#if defined(_WIN32) || defined(_WIN64)
+#define COLOR_TARGET_WINDOWS
+#endif
+
 namespace Color
 {
 constexpr std::string_view Black = "\e[0;30m";
@@ -20,7 +24,12 @@ constexpr std::string_view YellowBold = "\e[01;33m";
 constexpr std::string_view Blue = "\e[0;34m";
 constexpr std::string_view BlueBold = "\e[01;34m";
 
+#ifdef COLOR_TARGET_WINDOWS
+constexpr std::string_view Magenta = "\e[01;35m";
+#else
 constexpr std::string_view Magenta = "\e[0;35m";
+#endif
+
 constexpr std::string_view MagentaBold = "\e[01;35m";
 
 constexpr std::string_view Cyan = "\e[0;36m";
