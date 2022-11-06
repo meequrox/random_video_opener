@@ -10,7 +10,7 @@
 
 namespace fs = std::filesystem;
 
-std::vector<fs::path> get_paths(fs::path wd) {
+std::vector<fs::path> get_files_in_dir(fs::path wd) {
     std::vector<fs::path> files;
 
     for (const auto &entry : fs::directory_iterator(wd)) {
@@ -56,7 +56,7 @@ void open_file_at_index(fs::path wd, std::vector<fs::path> files, unsigned int i
 
 
 int main() {
-    std::vector<fs::path> files = get_paths(fs::current_path());
+    std::vector<fs::path> files = get_files_in_dir(fs::current_path());
 
     if (!files.size()) {
         std::cout << Color::Red << "No files found, exiting..." << Color::Standard << std::endl;
