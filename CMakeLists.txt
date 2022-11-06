@@ -7,14 +7,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(RandomVideoOpener src/main.cpp)
 
- target_sources(RandomVideoOpener PRIVATE
-         #headers
-         src/Colors/colors.hpp
-         src/URNG/URNG.hpp
+target_sources(RandomVideoOpener PRIVATE
+    #headers
+    src/Colors/colors.hpp
+    src/URNG/URNG.hpp
+    src/files.hpp
 
-         #sources
-         src/URNG/URNG.cpp
- )
+    #sources
+    src/URNG/URNG.cpp
+    src/files.cpp
+)
 
 install(TARGETS RandomVideoOpener
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
