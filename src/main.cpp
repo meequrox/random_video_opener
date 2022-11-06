@@ -7,6 +7,11 @@
 
 int main()
 {
+    // idk how it works, but it repairs coloring in Windows cmd & PowerShell
+#ifdef COLOR_TARGET_WINDOWS
+    system("");
+#endif
+
     std::vector<fs::path> files = get_files_in_dir(fs::current_path());
 
     if (!files.size())
