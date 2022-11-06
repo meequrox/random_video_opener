@@ -3,6 +3,7 @@
 #include <vector>
 #include <filesystem>
 #include <iostream>
+#include <bits/stdc++.h>
 
 #define PRINT
 
@@ -17,6 +18,8 @@ std::vector<fs::path> get_paths() {
         if (entry.is_regular_file())
             files.push_back(entry);
     }
+
+    std::sort(files.begin(), files.end());
 
 #ifdef PRINT
     std::cout << dir.generic_string() << ":" << std::endl;
