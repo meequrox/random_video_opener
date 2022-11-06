@@ -20,5 +20,7 @@ target_sources(RandomVideoOpener PRIVATE
 
 add_compile_definitions("_PDEBUG_=$<CONFIG:Debug>")
 
+set_target_properties(RandomVideoOpener PROPERTIES LINK_FLAGS_RELEASE -s)
+
 install(TARGETS RandomVideoOpener
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
