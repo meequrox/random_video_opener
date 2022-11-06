@@ -32,16 +32,15 @@ void print_info(fs::path wd, std::vector<fs::path> files, unsigned int index) {
     1.mp3
     */
 
-    int fname_begin = files.at(index).generic_string().find_last_of('/') + 1;
-
     std::cout << wd.generic_string() << std::endl << std::endl;
 
     std::cout << files.size() << " files, choosing number " << index + 1 << ":" << std::endl;
-    std::cout << files.at(index).generic_string().substr(fname_begin) << std::endl << std::endl;
+    std::cout << files.at(index).filename().generic_string() << std::endl << std::endl;
 
 #ifdef _PDEBUG_
     for (int i = 0; i < files.size(); i++)
         std::cout << files.at(i).generic_string() << std::endl;
+    std::cout << std::endl;
 #endif
 }
 
