@@ -70,7 +70,7 @@ void print_info(fs::path wd, std::vector<fs::path> files, unsigned int index) {
 
 #ifdef _PDEBUG_
     for (int i = 0; i < files.size(); i++)
-        std::cout << files.at(i).generic_string() << std::endl;
+        std::cout << files.at(i).filename().generic_string() << std::endl;
     std::cout << std::endl;
 #endif
 }
