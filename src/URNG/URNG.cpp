@@ -2,8 +2,10 @@
 
 #include <random>
 
-int URNG(int min, int max) {
-    if (min > max) {
+int URNG(int min, int max)
+{
+    if (min > max)
+    {
         int tmp = min;
         min = max;
         max = tmp;

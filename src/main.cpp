@@ -5,10 +5,12 @@
 
 #include <iostream>
 
-int main() {
+int main()
+{
     std::vector<fs::path> files = get_files_in_dir(fs::current_path());
 
-    if (!files.size()) {
+    if (!files.size())
+    {
         std::cout << Color::Red << "No files found, exiting..." << Color::Standard << std::endl;
         return EXIT_SUCCESS;
     }
