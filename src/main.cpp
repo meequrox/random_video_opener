@@ -5,15 +5,14 @@
 #include <iostream>
 #include <bits/stdc++.h>
 
-#define PRINT
+#define _PDEBUG_
 
 namespace fs = std::filesystem;
 
-std::vector<fs::path> get_paths() {
-    fs::path dir = fs::current_path();
+std::vector<fs::path> get_paths(fs::path wd) {
     std::vector<fs::path> files;
 
-    for (const auto &entry : fs::directory_iterator(dir)) {
+    for (const auto &entry : fs::directory_iterator(wd)) {
         // TODO: Format check
         if (entry.is_regular_file())
             files.push_back(entry);
@@ -21,26 +20,41 @@ std::vector<fs::path> get_paths() {
 
     std::sort(files.begin(), files.end());
 
-#ifdef PRINT
-    std::cout << dir.generic_string() << ":" << std::endl;
-#endif
-
     return files;
 }
 
-int main() {
+void print_info(fs::path wd, std::vector<fs::path> files, unsigned int index) {
+    /*
+    /home/user/Downloads
 
-    std::vector<fs::path> files = get_paths();
+    4 files, choosing number 1:
+    1.mp3
+    */
 
-#ifdef PRINT
+    int fname_begin = files.at(index).generic_string().find_last_of('/') + 1;
+
+    std::cout << wd.generic_string() << std::endl << std::endl;
+
+    std::cout << files.size() << " files, choosing number " << index + 1 << ":" << std::endl;
+    std::cout << files.at(index).generic_string().substr(fname_begin) << std::endl << std::endl;
+
+#ifdef _PDEBUG_
     for (int i = 0; i < files.size(); i++)
         std::cout << files.at(i).generic_string() << std::endl;
 #endif
+}
+
+
+int main() {
+    std::vector<fs::path> files = get_paths(fs::current_path());
 
     if (!files.size()) {
         std::cout << Color::Red << "No files found, exiting..." << Color::Reset << std::endl;
         return EXIT_SUCCESS;
     }
+
+    // Change 0 to random index
+    print_info(fs::current_path(), files, 0);
 
     return EXIT_SUCCESS;
 }
