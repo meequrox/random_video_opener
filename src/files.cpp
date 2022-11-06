@@ -6,7 +6,7 @@
 static bool is_compatible_format(std::vector<std::string> exts, fs::path path) {
     for (const auto &e : exts) {
         if (path.extension().generic_string() == e) {
-#ifdef _PDEBUG_
+#if _PDEBUG_ == 1
             std::cout << Color::Green << "VIDEO: " << Color::Standard <<
                          path.filename().generic_string() << std::endl;
 #endif
@@ -14,7 +14,7 @@ static bool is_compatible_format(std::vector<std::string> exts, fs::path path) {
         }
     }
 
-#ifdef _PDEBUG_
+#if _PDEBUG_ == 1
             std::cout << Color::Red << "NOT VIDEO: " << Color::Standard <<
                          path.filename().generic_string() << std::endl;
 #endif
@@ -54,7 +54,7 @@ void print_info(fs::path wd, std::vector<fs::path> files, unsigned int index) {
     1.mp4
     */
 
-#ifdef _PDEBUG_
+#if _PDEBUG_ == 1
     std::cout << std::endl;
 #endif
 
@@ -67,7 +67,7 @@ void print_info(fs::path wd, std::vector<fs::path> files, unsigned int index) {
     std::cout << Color::GreenBold << files.at(index).filename().generic_string() << Color::Standard <<
                  std::endl << std::endl;
 
-#ifdef _PDEBUG_
+#if _PDEBUG_ == 1
     for (int i = 0; i < files.size(); i++)
         std::cout << files.at(i).filename().generic_string() << std::endl;
     std::cout << std::endl;
