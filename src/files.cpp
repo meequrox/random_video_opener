@@ -46,7 +46,11 @@ std::vector<fs::path> get_files_in_dir(fs::path wd)
 void open_file_at_index(fs::path wd, std::vector<fs::path> files, unsigned int index)
 {
     std::string filename = files.at(index).filename().generic_string();
+#ifdef COLOR_TARGET_WINDOWS
+    std::string cmd = "start .\\\"" + filename + "\" &";
+#else
     std::string cmd = "xdg-open \"" + filename + "\" &";
+#endif
     system(cmd.c_str());
 }
 
