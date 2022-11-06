@@ -63,7 +63,7 @@ int main() {
         return EXIT_SUCCESS;
     }
 
-    int rand = URNG(0, files.size());
+    int rand = URNG(0, files.size() - 1);
 
     print_info(fs::current_path(), files, rand);
 
