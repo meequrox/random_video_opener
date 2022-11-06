@@ -32,10 +32,14 @@ void print_info(fs::path wd, std::vector<fs::path> files, unsigned int index) {
     1.mp3
     */
 
-    std::cout << wd.generic_string() << std::endl << std::endl;
+    std::cout << Color::Cyan << wd.generic_string() << Color::Standard <<
+                 std::endl << std::endl;
 
-    std::cout << files.size() << " files, choosing number " << index + 1 << ":" << std::endl;
-    std::cout << files.at(index).filename().generic_string() << std::endl << std::endl;
+    std::cout << files.size() << " files, choosing number " <<
+                 Color::GreenBold << index + 1 << Color::Standard <<
+                 ":" << std::endl;
+    std::cout << Color::GreenBold << files.at(index).filename().generic_string() << Color::Standard <<
+                 std::endl << std::endl;
 
 #ifdef _PDEBUG_
     for (int i = 0; i < files.size(); i++)
@@ -55,7 +59,7 @@ int main() {
     std::vector<fs::path> files = get_paths(fs::current_path());
 
     if (!files.size()) {
-        std::cout << Color::Red << "No files found, exiting..." << Color::Reset << std::endl;
+        std::cout << Color::Red << "No files found, exiting..." << Color::Standard << std::endl;
         return EXIT_SUCCESS;
     }
 
@@ -65,7 +69,7 @@ int main() {
 
     open_file_at_index(fs::current_path(), files, rand);
 
-    std::cout << "You can now close this window" << std::endl;
+    std::cout << Color::Green << "You can now close this window" << Color::Standard << std::endl;
 
     return EXIT_SUCCESS;
 }
