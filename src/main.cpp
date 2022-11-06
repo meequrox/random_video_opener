@@ -1,4 +1,5 @@
 #include "Colors/colors.hpp"
+#include "URNG/URNG.hpp"
 
 #include <vector>
 #include <filesystem>
@@ -53,8 +54,10 @@ int main() {
         return EXIT_SUCCESS;
     }
 
+    int rand = URNG(0, files.size());
+
     // Change 0 to random index
-    print_info(fs::current_path(), files, 0);
+    print_info(fs::current_path(), files, rand);
 
     return EXIT_SUCCESS;
 }
