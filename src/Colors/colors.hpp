@@ -7,8 +7,7 @@
 #define COLOR_TARGET_WINDOWS
 #endif
 
-namespace Color
-{
+namespace Color {
 constexpr std::string_view Black = "\e[0;30m";
 constexpr std::string_view Darkgrey = "\e[01;30m";
 
@@ -41,6 +40,6 @@ constexpr std::string_view White = "\e[01;37m";
 constexpr std::string_view Standard = "\e[0m";
 constexpr std::string_view Normal = Standard;
 constexpr std::string_view Reset = Standard;
-} // namespace Color
+}  // namespace Color
 
-#endif // __COLORS_HPP__
+#endif  // __COLORS_HPP__

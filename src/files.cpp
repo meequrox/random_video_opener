@@ -1,41 +1,38 @@
 #include "files.hpp"
+
+#include <bits/stdc++.h>  // std::sort
+
 #include "Colors/colors.hpp"
 
-#include <bits/stdc++.h> // std::sort
-
-static bool is_compatible_format(std::vector<std::string> exts, fs::path path)
-{
-    for (const auto &e : exts)
-    {
+static bool is_compatible_format(std::vector<std::string> exts, fs::path path) {
+    for (const auto &e : exts) {
         std::string file_ext = path.extension().generic_string();
         std::transform(file_ext.begin(), file_ext.end(), file_ext.begin(), ::tolower);
-        if (file_ext == e)
-        {
+        if (file_ext == e) {
 #if _PDEBUG_ == 1
-            std::cout << Color::Green << "VIDEO: " << Color::Standard << path.filename().generic_string() << std::endl;
+            std::cout << Color::Green << "VIDEO: " << Color::Standard << path.filename().generic_string()
+                      << std::endl;
 #endif
             return true;
         }
     }
 
 #if _PDEBUG_ == 1
-    std::cout << Color::Red << "NOT VIDEO: " << Color::Standard << path.filename().generic_string() << std::endl;
+    std::cout << Color::Red << "NOT VIDEO: " << Color::Standard << path.filename().generic_string()
+              << std::endl;
 #endif
 
     return false;
 }
 
-std::vector<fs::path> get_files_in_dir(fs::path wd)
-{
-    std::vector<std::string> video_exts(
-        {".webm", ".mkv", ".flv", ".avi", ".mts", ".m2ts", ".ts", ".mov", ".wmv", ".mp4", ".m4v", ".3gp"});
+std::vector<fs::path> get_files_in_dir(fs::path wd) {
+    std::vector<std::string> video_exts({".webm", ".mkv", ".flv", ".avi", ".mts", ".m2ts", ".ts", ".mov",
+                                         ".wmv", ".mp4", ".m4v", ".3gp"});
 
     std::vector<fs::path> files;
 
-    for (const auto &entry : fs::directory_iterator(wd))
-    {
-        if (entry.is_regular_file() && is_compatible_format(video_exts, entry))
-            files.push_back(entry);
+    for (const auto &entry : fs::directory_iterator(wd)) {
+        if (entry.is_regular_file() && is_compatible_format(video_exts, entry)) files.push_back(entry);
     }
 
     std::sort(files.begin(), files.end());
@@ -43,8 +40,7 @@ std::vector<fs::path> get_files_in_dir(fs::path wd)
     return files;
 }
 
-void open_file_at_index(fs::path wd, std::vector<fs::path> files, unsigned int index)
-{
+void open_file_at_index(fs::path wd, std::vector<fs::path> files, unsigned int index) {
     std::string filename = files.at(index).filename().generic_string();
 #ifdef COLOR_TARGET_WINDOWS
     std::string cmd = "start .\\\"" + filename + "\" &";
@@ -54,8 +50,7 @@ void open_file_at_index(fs::path wd, std::vector<fs::path> files, unsigned int i
     system(cmd.c_str());
 }
 
-void print_info(fs::path wd, std::vector<fs::path> files, unsigned int index)
-{
+void print_info(fs::path wd, std::vector<fs::path> files, unsigned int index) {
     /*
     /home/user/Downloads
 
@@ -69,9 +64,10 @@ void print_info(fs::path wd, std::vector<fs::path> files, unsigned int index)
 
     std::cout << Color::Cyan << wd.generic_string() << Color::Standard << std::endl << std::endl;
 
-    std::cout << files.size() << " files, choosing number " << Color::GreenBold << index + 1 << Color::Standard << ":"
-              << std::endl;
-    std::cout << Color::GreenBold << files.at(index).filename().generic_string() << Color::Standard << std::endl
+    std::cout << files.size() << " files, choosing number " << Color::GreenBold << index + 1
+              << Color::Standard << ":" << std::endl;
+    std::cout << Color::GreenBold << files.at(index).filename().generic_string() << Color::Standard
+              << std::endl
               << std::endl;
 
 #if _PDEBUG_ == 1

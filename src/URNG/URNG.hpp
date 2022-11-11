@@ -3,4 +3,4 @@
 
 int URNG(int min, int max);
 
-#endif // __URNG_HPP__
+#endif  // __URNG_HPP__

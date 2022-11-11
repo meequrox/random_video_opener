@@ -1,12 +1,10 @@
-#include "files.hpp"
+#include <iostream>
 
 #include "Colors/colors.hpp"
 #include "URNG/URNG.hpp"
+#include "files.hpp"
 
-#include <iostream>
-
-int main()
-{
+int main() {
     // idk how it works, but it repairs coloring in Windows cmd & PowerShell
 #ifdef COLOR_TARGET_WINDOWS
     system("");
@@ -14,8 +12,7 @@ int main()
 
     std::vector<fs::path> files = get_files_in_dir(fs::current_path());
 
-    if (!files.size())
-    {
+    if (!files.size()) {
         std::cout << Color::Red << "No files found, exiting..." << Color::Standard << std::endl;
         return EXIT_SUCCESS;
     }
