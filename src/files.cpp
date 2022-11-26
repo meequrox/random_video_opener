@@ -5,7 +5,7 @@
 #include "Colors/colors.hpp"
 
 static bool is_compatible_format(std::vector<std::string> exts, fs::path path) {
-    for (const auto &e : exts) {
+    for (const auto& e : exts) {
         std::string file_ext = path.extension().generic_string();
         std::transform(file_ext.begin(), file_ext.end(), file_ext.begin(), ::tolower);
         if (file_ext == e) {
@@ -31,7 +31,7 @@ std::vector<fs::path> get_files_in_dir(fs::path wd) {
 
     std::vector<fs::path> files;
 
-    for (const auto &entry : fs::directory_iterator(wd)) {
+    for (const auto& entry : fs::directory_iterator(wd)) {
         if (entry.is_regular_file() && is_compatible_format(video_exts, entry)) files.push_back(entry);
     }
 
