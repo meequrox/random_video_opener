@@ -1,7 +1,8 @@
 #include <iostream>
+#include <random>
 
+#include "../thirdparty/pcg_random.hpp"
 #include "Colors/colors.hpp"
-#include "URNG/URNG.hpp"
 #include "files.hpp"
 
 int main() {
@@ -17,7 +18,10 @@ int main() {
         return EXIT_SUCCESS;
     }
 
-    int rand = URNG(0, files.size() - 1);
+    pcg32_fast rng(pcg_extras::seed_seq_from<std::random_device>{});
+
+    // [0; files.size()]
+    int rand = rng(files.size());
 
     print_info(fs::current_path(), files, rand);
 

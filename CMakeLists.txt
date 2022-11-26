@@ -10,11 +10,9 @@ add_executable(RandomVideoOpener src/main.cpp)
 target_sources(RandomVideoOpener PRIVATE
     #headers
     src/Colors/colors.hpp
-    src/URNG/URNG.hpp
     src/files.hpp
 
     #sources
-    src/URNG/URNG.cpp
     src/files.cpp
 )
 
