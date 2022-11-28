@@ -8,15 +8,19 @@
 #include "Colors/colors.hpp"
 
 namespace mqr {
-directory::directory() : wd(fs::current_path()) { refreshFiles(); }
+directory::directory() : wd(fs::current_path()) {
+    refreshFiles();
+    refreshIndex();
+}
 
 directory::directory(const fs::path dir) {
     wd = (fs::exists(dir)) ? dir : fs::current_path();
     refreshFiles();
+    refreshIndex();
 }
 
 void directory::refreshFiles() {
-    wd.clear();
+    if (!files.empty()) files.clear();
 
     for (const fs::directory_entry& entry : fs::directory_iterator(wd)) {
         if (entry.is_regular_file()) files.push_front(entry);
