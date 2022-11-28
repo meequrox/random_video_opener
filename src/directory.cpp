@@ -81,16 +81,14 @@ void directory::printInfo() {
 #endif
 
     if (!files.empty()) {
-        std::cout << wd.generic_string() << " has " << Color::GreenBold << files.size()
-                  << Color::Standard << " video files." << std::endl;
+        std::cout << wd.generic_string() << ": " << files.size() << " video files." << std::endl << std::endl;
 
-        std::cout << "Choosing number " << Color::GreenBold << randomIndex + 1 << Color::Standard
-                  << ": ";
+        std::cout << "Choosing number " << randomIndex + 1 << ": ";
         std::cout << Color::GreenBold << files.at(randomIndex).filename().generic_string()
                   << Color::Standard << std::endl
                   << std::endl;
     } else {
-        std::cout << Color::Red << "No files found." << Color::Standard << std::endl;
+        std::cout << "No files found." << std::endl;
         return;
     }
 
@@ -105,9 +103,6 @@ void directory::openRandomFile() {
 
     std::string filename = files.at(randomIndex).filename().generic_string();
 #ifdef COLOR_TARGET_WINDOWS
-    // fix coloring in Windows cmd & PowerShell
-    system("");
-
     std::string cmd = "start .\\\"";
 #else
     std::string cmd = "xdg-open \"";
@@ -115,6 +110,6 @@ void directory::openRandomFile() {
     cmd += filename + "\" &";
     system(cmd.c_str());
 
-    std::cout << Color::Green << "Now you can close the terminal." << Color::Standard << std::endl;
+    std::cout << "Now you can close the terminal." << std::endl;
 }
 }  // namespace mqr
