@@ -21,7 +21,8 @@ directory::directory(const fs::path dir) {
 
 constexpr int SUPPORTED_VIDEO_FORMATS_COUNT = 12;
 
-static bool isCompatibleExtension(std::array<std::string, SUPPORTED_VIDEO_FORMATS_COUNT>& exts, fs::path file) {
+static bool isCompatibleExtension(std::array<std::string, SUPPORTED_VIDEO_FORMATS_COUNT>& exts,
+                                  fs::path file) {
     std::string file_ext = file.extension().generic_string();
     std::transform(file_ext.begin(), file_ext.end(), file_ext.begin(), ::tolower);
 
@@ -45,7 +46,8 @@ static bool isCompatibleExtension(std::array<std::string, SUPPORTED_VIDEO_FORMAT
 void directory::refreshFiles() {
     if (!files.empty()) files.clear();
 
-    std::array<std::string, SUPPORTED_VIDEO_FORMATS_COUNT> extensions = {".mp4", ".mkv", ".webm", ".flv", ".avi", ".mts", ".m2ts", ".ts", ".mov", ".wmv", ".m4v", ".3gp"};
+    std::array<std::string, SUPPORTED_VIDEO_FORMATS_COUNT> extensions = {
+        ".mp4", ".mkv", ".webm", ".flv", ".avi", ".mts", ".m2ts", ".ts", ".mov", ".wmv", ".m4v", ".3gp"};
 
     for (const fs::directory_entry& entry : fs::directory_iterator(wd)) {
         if (entry.is_regular_file() && isCompatibleExtension(extensions, entry.path()))
@@ -79,12 +81,13 @@ void directory::printInfo() {
 #endif
 
     if (!files.empty()) {
-        std::cout << Color::Cyan << wd.generic_string() << Color::Standard << " has " <<
-                     Color::GreenBold << files.size() << Color::Standard << " video files." << std::endl;
+        std::cout << Color::Cyan << wd.generic_string() << Color::Standard << " has " << Color::GreenBold
+                  << files.size() << Color::Standard << " video files." << std::endl;
 
-        std::cout << "Choosing number " << Color::GreenBold << randomIndex + 1 << Color::Standard << ": ";
-        std::cout << Color::GreenBold << files.at(randomIndex).filename().generic_string() << Color::Standard
-                  << std::endl
+        std::cout << "Choosing number " << Color::GreenBold << randomIndex + 1 << Color::Standard
+                  << ": ";
+        std::cout << Color::GreenBold << files.at(randomIndex).filename().generic_string()
+                  << Color::Standard << std::endl
                   << std::endl;
     } else {
         std::cout << Color::Red << "No files found." << Color::Standard << std::endl;
