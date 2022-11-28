@@ -11,11 +11,9 @@ target_sources(RandomVideoOpener PRIVATE
     #headers
     src/Colors/colors.hpp
     src/directory.hpp
-    src/files.hpp
 
     #sources
     src/directory.cpp
-    src/files.cpp
 )
 
 add_compile_definitions("_PDEBUG_=$<CONFIG:Debug>")
