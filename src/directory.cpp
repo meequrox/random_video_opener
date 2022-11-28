@@ -91,11 +91,6 @@ void directory::printInfo() {
         std::cout << "No files found." << std::endl;
         return;
     }
-
-#if _PDEBUG_ == 1
-    for (const fs::path& file : files) std::cout << file.filename().generic_string() << std::endl;
-    std::cout << std::endl;
-#endif
 }
 
 void directory::openRandomFile() {

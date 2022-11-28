@@ -42,8 +42,8 @@ __The output binary will be named `RandomVideoOpener` or `RandomVideoOpener.exe`
 ### Debug
 
 The program outputs the same information as [Release](#release) and:
-- check result for each file (VIDEO/NOT VIDEO)
 - list of all files in the directory
+- check result for each file (VIDEO/NOT VIDEO)
 
 GNU/Linux:
 
