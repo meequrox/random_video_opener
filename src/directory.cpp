@@ -48,6 +48,7 @@ void directory::printInfo() {
 #endif
 
 #ifdef COLOR_TARGET_WINDOWS
+    // fix coloring in Windows cmd & PowerShell
     system("");
 #endif
 
@@ -74,8 +75,10 @@ void directory::openRandomFile() {
 
     std::string filename = files.at(randomIndex).filename().generic_string();
 #ifdef COLOR_TARGET_WINDOWS
-    std::string cmd = "start .\\\"";
+    // fix coloring in Windows cmd & PowerShell
     system("");
+
+    std::string cmd = "start .\\\"";
 #else
     std::string cmd = "xdg-open \"";
 #endif
