@@ -14,19 +14,49 @@ directory::directory() : wd(fs::current_path()) {
 }
 
 directory::directory(const fs::path dir) {
-    wd = (fs::exists(dir)) ? dir : fs::current_path();
+    wd = fs::exists(dir) ? dir : fs::current_path();
     refreshFiles();
     refreshIndex();
+}
+
+constexpr int SUPPORTED_VIDEO_FORMATS_COUNT = 12;
+
+static bool isCompatibleExtension(std::array<std::string, SUPPORTED_VIDEO_FORMATS_COUNT>& exts, fs::path file) {
+    std::string file_ext = file.extension().generic_string();
+    std::transform(file_ext.begin(), file_ext.end(), file_ext.begin(), ::tolower);
+
+    if (std::find(exts.begin(), exts.end(), file_ext) != exts.end()) {
+#if _PDEBUG_ == 1
+        std::cout << Color::Green << "VIDEO: " << Color::Standard << file.filename().generic_string()
+                  << std::endl;
+#endif
+
+        return true;
+    }
+
+#if _PDEBUG_ == 1
+    std::cout << Color::Red << "NOT VIDEO: " << Color::Standard << file.filename().generic_string()
+              << std::endl;
+#endif
+
+    return false;
 }
 
 void directory::refreshFiles() {
     if (!files.empty()) files.clear();
 
+    std::array<std::string, SUPPORTED_VIDEO_FORMATS_COUNT> extensions = {".mp4", ".mkv", ".webm", ".flv", ".avi", ".mts", ".m2ts", ".ts", ".mov", ".wmv", ".m4v", ".3gp"};
+
     for (const fs::directory_entry& entry : fs::directory_iterator(wd)) {
-        if (entry.is_regular_file()) files.push_front(entry);
+        if (entry.is_regular_file() && isCompatibleExtension(extensions, entry.path()))
+            files.push_front(entry);
     }
 
     std::sort(files.begin(), files.end());
+
+#if _PDEBUG_ == 1
+    std::cout << std::endl;
+#endif
 }
 
 void directory::refreshIndex() {
@@ -43,10 +73,6 @@ void directory::printInfo() {
     Hello.mp4
     */
 
-#if _PDEBUG_ == 1
-    std::cout << std::endl;
-#endif
-
 #ifdef COLOR_TARGET_WINDOWS
     // fix coloring in Windows cmd & PowerShell
     system("");
@@ -54,7 +80,7 @@ void directory::printInfo() {
 
     if (!files.empty()) {
         std::cout << Color::Cyan << wd.generic_string() << Color::Standard << " has " <<
-                     Color::GreenBold << files.size() << Color::Standard << " files." << std::endl;
+                     Color::GreenBold << files.size() << Color::Standard << " video files." << std::endl;
 
         std::cout << "Choosing number " << Color::GreenBold << randomIndex + 1 << Color::Standard << ": ";
         std::cout << Color::GreenBold << files.at(randomIndex).filename().generic_string() << Color::Standard
