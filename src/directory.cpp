@@ -52,13 +52,13 @@ void directory::printInfo() {
     system("");
 #endif
 
-    std::cout << Color::Cyan << wd.generic_string() << Color::Standard << std::endl << std::endl;
-
     if (!files.empty()) {
-        std::cout << files.size() << " files, choosing number " << Color::GreenBold << randomIndex + 1
-                  << Color::Standard << ":" << std::endl;
-        std::cout << Color::GreenBold << files.at(randomIndex).filename().generic_string()
-                  << Color::Standard << std::endl
+        std::cout << Color::Cyan << wd.generic_string() << Color::Standard << " has " <<
+                     Color::GreenBold << files.size() << Color::Standard << " files." << std::endl;
+
+        std::cout << "Choosing number " << Color::GreenBold << randomIndex + 1 << Color::Standard << ": ";
+        std::cout << Color::GreenBold << files.at(randomIndex).filename().generic_string() << Color::Standard
+                  << std::endl
                   << std::endl;
     } else {
         std::cout << Color::Red << "No files found." << Color::Standard << std::endl;
