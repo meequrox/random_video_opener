@@ -10,10 +10,10 @@ add_executable(RandomVideoOpener src/main.cpp)
 target_sources(RandomVideoOpener PRIVATE
     #headers
     src/Colors/colors.hpp
-    src/files.hpp
+    src/directory.hpp
 
     #sources
-    src/files.cpp
+    src/directory.cpp
 )
 
 add_compile_definitions("_PDEBUG_=$<CONFIG:Debug>")
