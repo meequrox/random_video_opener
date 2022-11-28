@@ -81,8 +81,8 @@ void directory::printInfo() {
 #endif
 
     if (!files.empty()) {
-        std::cout << Color::Cyan << wd.generic_string() << Color::Standard << " has " << Color::GreenBold
-                  << files.size() << Color::Standard << " video files." << std::endl;
+        std::cout << wd.generic_string() << " has " << Color::GreenBold << files.size()
+                  << Color::Standard << " video files." << std::endl;
 
         std::cout << "Choosing number " << Color::GreenBold << randomIndex + 1 << Color::Standard
                   << ": ";
