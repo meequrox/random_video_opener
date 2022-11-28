@@ -4,7 +4,7 @@
 
 __A simple program that opens a random video in the current directory__
 
-[List of supported formats](src/files.cpp#L31)
+[List of supported formats](src/directory.cpp#L49)
 
 _GNU/Linux and Windows are currently known to be supported_
 
