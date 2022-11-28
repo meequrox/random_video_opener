@@ -62,7 +62,7 @@ void directory::refreshFiles() {
 void directory::refreshIndex() {
     pcg32_fast rng(pcg_extras::seed_seq_from<std::random_device>{});
 
-    randomIndex = rng(files.size());
+    randomIndex = files.size() ? rng(files.size()) : 0;
 }
 
 void directory::printInfo() {
@@ -88,6 +88,7 @@ void directory::printInfo() {
                   << std::endl;
     } else {
         std::cout << Color::Red << "No files found." << Color::Standard << std::endl;
+        return;
     }
 
 #if _PDEBUG_ == 1
