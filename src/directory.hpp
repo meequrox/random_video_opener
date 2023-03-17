@@ -18,14 +18,11 @@ class directory {
     size_t randomIndex;
 
    public:
-    directory(const fs::path dir);
     directory();
 
-    void openRandomFile();
-
     void printInfo();
-
     void refresh();
+    void openRandomFile();
 };
 }  // namespace mqr
 

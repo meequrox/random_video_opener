@@ -4,17 +4,11 @@
 #include <iostream>
 #include <random>
 
-#include "Colors/colors.hpp"
+#include "colors.hpp"
 
 namespace mqr {
 directory::directory()
     : wd(fs::current_path()), random_generator(pcg_extras::seed_seq_from<std::random_device>{}) {
-    refresh();
-}
-
-directory::directory(const fs::path dir)
-    : random_generator(pcg_extras::seed_seq_from<std::random_device>{}) {
-    wd = fs::exists(dir) ? dir : fs::current_path();
     refresh();
 }
 
