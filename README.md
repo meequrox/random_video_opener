@@ -4,18 +4,17 @@
 
 __A simple program that opens a random video in the current directory__
 
-[List of supported formats](src/directory.cpp#L49)
+[List of supported formats](src/directory.cpp#L25)
 
-_GNU/Linux and Windows are currently known to be supported_
+_GNU/Linux and Windows are currently supported_
 
 ## Build
 
 ### Release
 
 The program outputs:
-- current working directory
-- number of files in the directory
-- selected file number and name
+- Number of files in the current working directory
+- Randomly selected file
 
 GNU/Linux:
 
@@ -42,8 +41,7 @@ __The output binary will be named `RandomVideoOpener` or `RandomVideoOpener.exe`
 ### Debug
 
 The program outputs the same information as [Release](#release) and:
-- list of all files in the directory
-- check result for each file (VIDEO/NOT VIDEO)
+- Check result for each file in a directory (VIDEO/NOT VIDEO)
 
 GNU/Linux:
 
