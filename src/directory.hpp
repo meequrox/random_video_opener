@@ -1,16 +1,20 @@
 #ifndef DIRECTORY_HPP
 #define DIRECTORY_HPP
 
-#include <deque>
 #include <filesystem>
+#include <vector>
+
+#include "../thirdparty/pcg_random.hpp"
 
 namespace mqr {
 namespace fs = std::filesystem;
 
 class directory {
    private:
-    std::deque<fs::path> files;
+    std::vector<fs::path> files;
     fs::path wd;
+
+    pcg32_fast random_generator;
     size_t randomIndex;
 
    public:
@@ -21,8 +25,7 @@ class directory {
 
     void printInfo();
 
-    void refreshFiles();
-    void refreshIndex();
+    void refresh();
 };
 }  // namespace mqr
 
