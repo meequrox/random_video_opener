@@ -4,7 +4,6 @@
 #include <iostream>
 #include <random>
 
-namespace mqr {
 directory::directory()
     : wd(fs::current_path()), random_generator(pcg_extras::seed_seq_from<std::random_device>{}) {
     refresh();
@@ -72,4 +71,3 @@ void directory::openRandomFile() {
     cmd += filename + "\" &";
     system(cmd.c_str());
 }
-}  // namespace mqr

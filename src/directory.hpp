@@ -5,7 +5,6 @@
 #include <pcg_random.hpp>
 #include <vector>
 
-namespace mqr {
 namespace fs = std::filesystem;
 
 class directory {
@@ -23,6 +22,5 @@ class directory {
     void refresh();
     void openRandomFile();
 };
-}  // namespace mqr
 
 #endif  // DIRECTORY_HPP

@@ -1,7 +1,7 @@
 #include "directory.hpp"
 
 int main() {
-    mqr::directory d;
+    directory d;
     d.printInfo();
     d.openRandomFile();
 
