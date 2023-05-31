@@ -17,8 +17,6 @@ target_sources(RandomVideoOpener PRIVATE
 
 target_include_directories(RandomVideoOpener PRIVATE "include")
 
-add_compile_definitions("_PDEBUG_=$<CONFIG:Debug>")
-
 set_target_properties(RandomVideoOpener PROPERTIES LINK_FLAGS_RELEASE -s)
 
 install(TARGETS RandomVideoOpener
