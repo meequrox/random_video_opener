@@ -2,9 +2,8 @@
 #define DIRECTORY_HPP
 
 #include <filesystem>
+#include <pcg_random.hpp>
 #include <vector>
-
-#include "../thirdparty/pcg_random.hpp"
 
 namespace mqr {
 namespace fs = std::filesystem;
