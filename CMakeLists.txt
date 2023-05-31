@@ -8,15 +8,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(RandomVideoOpener src/main.cpp)
 
 target_sources(RandomVideoOpener PRIVATE
-    #headers
-    src/colors.hpp
+    # .h .hpp
     src/directory.hpp
 
-    #sources
+    # .c .cpp .cc
     src/directory.cpp
 )
 
-add_compile_definitions("_PDEBUG_=$<CONFIG:Debug>")
+target_include_directories(RandomVideoOpener PRIVATE "include")
 
 set_target_properties(RandomVideoOpener PROPERTIES LINK_FLAGS_RELEASE -s)
 
