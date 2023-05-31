@@ -1,9 +1,9 @@
 #include "directory.hpp"
 
 int main() {
-    directory d;
-    d.printInfo();
-    d.openRandomFile();
+    directory wd;
+    wd.printInfo();
+    wd.openRandomFile();
 
     return 0;
 }
