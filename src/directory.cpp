@@ -4,8 +4,6 @@
 #include <iostream>
 #include <random>
 
-#include "colors.hpp"
-
 namespace mqr {
 directory::directory()
     : wd(fs::current_path()), random_generator(pcg_extras::seed_seq_from<std::random_device>{}) {
