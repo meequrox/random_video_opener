@@ -14,7 +14,7 @@ class directory {
 
     std::random_device randomGenerator;
     std::uniform_int_distribution<int> distribution;
-    int32_t randomIndex;
+    int32_t randomIndex = -1;
 
    public:
     directory();

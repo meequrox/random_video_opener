@@ -2,11 +2,9 @@
 #include <directory/directory.hpp>
 #include <iostream>
 
-directory::directory() : workingDirectory(fs::current_path()), randomGenerator(), distribution(0, 1) {
-    refreshInfo();
-}
+directory::directory() : workingDirectory(fs::current_path()), distribution(0, 1) { refreshInfo(); }
 
-static bool isCompatibleExtension(std::vector<std::string>& exts, fs::path file) {
+bool isCompatibleExtension(const std::vector<std::string>& exts, const fs::path& file) {
     std::string file_ext = file.extension().generic_string();
     std::transform(file_ext.begin(), file_ext.end(), file_ext.begin(), ::tolower);
 
@@ -16,8 +14,9 @@ static bool isCompatibleExtension(std::vector<std::string>& exts, fs::path file)
 void directory::refreshInfo() {
     videoFiles.clear();
 
-    std::vector<std::string> extensions = {".mp4",  ".mkv", ".webm", ".flv", ".avi", ".mts", ".mpg",
-                                           ".m2ts", ".ts",  ".mov",  ".wmv", ".m4v", ".3gp", ".mpeg"};
+    const std::vector<std::string> extensions = {".mp4", ".mkv", ".webm", ".flv", ".avi",
+                                                 ".mts", ".mpg", ".m2ts", ".ts",  ".mov",
+                                                 ".wmv", ".m4v", ".3gp",  ".mpeg"};
 
     for (const auto& entry : fs::directory_iterator(workingDirectory)) {
         if (entry.is_regular_file() && isCompatibleExtension(extensions, entry.path())) {
@@ -26,7 +25,8 @@ void directory::refreshInfo() {
     }
 
     distribution.reset();
-    distribution.param(std::uniform_int_distribution<int>::param_type(0, videoFiles.size() - 1));
+    distribution.param(
+        std::uniform_int_distribution<int>::param_type(0, static_cast<int>(videoFiles.size()) - 1));
     randomIndex = videoFiles.empty() ? -1 : distribution(randomGenerator);
 }
 
@@ -42,7 +42,9 @@ void directory::printInfo() {
 }
 
 void directory::openRandomFile() {
-    if (videoFiles.empty()) return;
+    if (videoFiles.empty()) {
+        return;
+    }
 
 #ifdef _WIN32
     std::string cmd = "start .\\\"";
@@ -50,7 +52,7 @@ void directory::openRandomFile() {
     std::string cmd = "xdg-open \"";
 #endif
 
-    std::string filename = videoFiles.at(randomIndex).filename();
+    const std::string filename = videoFiles.at(randomIndex).filename();
 
     cmd += filename + "\" &";
     system(cmd.c_str());

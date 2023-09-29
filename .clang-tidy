@@ -15,8 +15,10 @@ Checks: >
   -cppcoreguidelines-avoid-magic-numbers,
   -readability-identifier-length,
   -readability-magic-numbers,
-  -bugprone-exception-escape
-WarningsAsErrors: true
+  -bugprone-exception-escape,
+  -concurrency-mt-unsafe,
+  -cert-env33-c
+WarningsAsErrors: '*'
 HeaderFilterRegex: '.*/(app|directory)/'
 AnalyzeTemporaryDtors: false
 FormatStyle: file
