@@ -1,8 +1,6 @@
-#include "directory.hpp"
-
 #include <algorithm>
+#include <directory/directory.hpp>
 #include <iostream>
-#include <random>
 
 directory::directory() : workingDirectory(fs::current_path()), randomGenerator(), distribution(0, 1) {
     refreshInfo();

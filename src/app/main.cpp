@@ -1,4 +1,4 @@
-#include "directory.hpp"
+#include <directory/directory.hpp>
 
 int main() {
     directory wd;

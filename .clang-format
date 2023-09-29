@@ -1,0 +1,9 @@
+BasedOnStyle: google
+IndentWidth: 4
+ColumnLimit: 105
+DerivePointerAlignment: false
+IndentPPDirectives: BeforeHash
+SpaceAfterCStyleCast: true
+ShortNamespaceLines: 0
+FixNamespaceComments: true
+NamespaceIndentation: All
