@@ -15,9 +15,4 @@ target_sources(RandomVideoOpener PRIVATE
     src/directory.cpp
 )
 
-target_include_directories(RandomVideoOpener PRIVATE "include")
-
 set_target_properties(RandomVideoOpener PROPERTIES LINK_FLAGS_RELEASE -s)
-
-install(TARGETS RandomVideoOpener
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})

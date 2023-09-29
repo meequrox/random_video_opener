@@ -4,13 +4,11 @@
 #include <iostream>
 #include <random>
 
-directory::directory()
-    : workingDirectory(fs::current_path()),
-      randomGenerator(pcg_extras::seed_seq_from<std::random_device>{}) {
+directory::directory() : workingDirectory(fs::current_path()), randomGenerator(), distribution(0, 1) {
     refreshInfo();
 }
 
-inline static bool isCompatibleExtension(std::vector<std::string>& exts, fs::path file) {
+static bool isCompatibleExtension(std::vector<std::string>& exts, fs::path file) {
     std::string file_ext = file.extension().generic_string();
     std::transform(file_ext.begin(), file_ext.end(), file_ext.begin(), ::tolower);
 
@@ -27,10 +25,11 @@ void directory::refreshInfo() {
         if (entry.is_regular_file() && isCompatibleExtension(extensions, entry.path())) {
             videoFiles.push_back(entry);
         }
-
-        std::shuffle(videoFiles.begin(), videoFiles.end(), randomGenerator);
-        randomIndex = videoFiles.size() ? randomGenerator(videoFiles.size()) : 0;
     }
+
+    distribution.reset();
+    distribution.param(std::uniform_int_distribution<int>::param_type(0, videoFiles.size() - 1));
+    randomIndex = videoFiles.empty() ? -1 : distribution(randomGenerator);
 }
 
 void directory::printInfo() {

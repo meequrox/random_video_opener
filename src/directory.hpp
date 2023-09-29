@@ -2,7 +2,7 @@
 #define DIRECTORY_HPP
 
 #include <filesystem>
-#include <pcg_random.hpp>
+#include <random>
 #include <vector>
 
 namespace fs = std::filesystem;
@@ -12,8 +12,9 @@ class directory {
     std::vector<fs::path> videoFiles;
     fs::path workingDirectory;
 
-    pcg32_fast randomGenerator;
-    size_t randomIndex;
+    std::random_device randomGenerator;
+    std::uniform_int_distribution<int> distribution;
+    int32_t randomIndex;
 
    public:
     directory();
