@@ -54,7 +54,7 @@ void directory::openRandomFile() {
     std::string cmd = "open \"";
 #endif
 
-    const std::string filename = videoFiles.at(randomIndex).filename();
+    const std::string filename = videoFiles.at(randomIndex).filename().generic_string();
 
     cmd += filename + "\" &";
     system(cmd.c_str());
