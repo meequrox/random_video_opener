@@ -1,47 +1,32 @@
 # RandomVideoOpener
 
-__A simple program that opens a random video in the current directory__
+__A simple program that opens a random video from the current directory.__
 
-[List of supported formats](src/directory.cpp#L23)
-
-_GNU/Linux and Windows are currently supported_
+[List of video formats](src/directory/directory.cpp#L17)
 
 ## Build
 
-GNU/Linux:
+- GNU/Linux
+- *BSD
+- Windows with [CMake](https://community.chocolatey.org/packages/cmake), [Ninja](https://community.chocolatey.org/packages/ninja) and [MinGW](https://community.chocolatey.org/packages/mingw)
+- Possibly macOS
 
 ```bash
 git clone https://github.com/meequrox/RandomVideoOpener.git
 
 cd RandomVideoOpener
 
-mkdir build && cd build
+cmake --preset=release
 
-cmake .. -DCMAKE_BUILD_TYPE="Release"
-
-make
+cmake --build --preset=release
 ```
 
-Windows (with [MinGW](http://www.equation.com/servlet/equation.cmd?fa=fortran) and [CMake](https://cmake.org/download/#latest) installed):
-
-```bash
-git clone https://github.com/meequrox/RandomVideoOpener.git
-
-cd RandomVideoOpener
-
-mkdir build && cd build
-
-cmake .. -DCMAKE_BUILD_TYPE="Release" -D"CMAKE_CXX_COMPILER=g++" -G "MinGW Makefiles" -D"CMAKE_MAKE_PROGRAM=make"
-
-make
-```
+The compiled files will be located in the `build/bin` directory.
 
 ## Usage
 
 ```bash
-user@onhost:~/Vids$ RandomVideoOpener
-
-Found 16 video files in "/home/user/Vids"
-
-Choosing file "07. Iterators.mp4"
+user@onhost:~/Videos$ ./RandomVideoOpener
+Found 140 video files in "/home/user/Videos"
+Choosing file "Funny cat.mp4"
 ```
