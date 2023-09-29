@@ -46,10 +46,12 @@ void directory::openRandomFile() {
         return;
     }
 
-#ifdef _WIN32
+#if defined(_WIN32)
     std::string cmd = "start .\\\"";
-#else
+#elif defined(__unix__)
     std::string cmd = "xdg-open \"";
+#elif defined(__APPLE__)
+    std::string cmd = "open \"";
 #endif
 
     const std::string filename = videoFiles.at(randomIndex).filename();
