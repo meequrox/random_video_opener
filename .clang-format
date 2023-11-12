@@ -24,8 +24,5 @@ ShortNamespaceLines: 0
 SortUsingDeclarations: Lexicographic
 SpaceAfterCStyleCast: true
 SpacesInContainerLiterals: false
-SpacesInLineCommentPrefix:
-  Minimum: 0
-  Maximum: -1
 TabWidth: 4
 UseTab: Never
