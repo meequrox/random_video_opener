@@ -3,32 +3,32 @@
 **A simple program that opens a random video from the current directory.**
 Uniform distribution is used.
 
-[List of video formats](src/app/main.cpp#L8-L9)
+[List of video formats](video/video.go#L33)
 
 ## Build
-
-- GNU/Linux, *BSD and other *nix
-- macOS
-- Windows with [CMake](https://community.chocolatey.org/packages/cmake), [Ninja](https://community.chocolatey.org/packages/ninja) and [MinGW](https://community.chocolatey.org/packages/mingw)
 
 ```bash
 git clone https://github.com/meequrox/random_video_opener.git
 
 cd random_video_opener
 
-cmake --preset=release
+# Default build
+go build -o build/
 
-cmake --build --preset=release
+# Optimized build
+go build -o build/ -ldflags="-s -w"
 ```
 
-The compiled files will be located in the `build/release/bin` directory.
+The binary will be located in the `build/` directory.
 
 ## Usage
 
 ```bash
 user@onhost:~/Videos$ ./random_video_opener
 Directory: /home/user/Videos
-Files: 140
-Index: 99
-File: Funny cat.mp4
+Files: 190
+File [99]: Funny cat.mp4
+Command: /sbin/xdg-open Funny cat.mp4
 ```
+
+Or you can simply double-click the binary file using the file manager.
